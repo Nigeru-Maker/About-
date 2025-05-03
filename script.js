@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Tab buttons
-  const ordersTab = document.getElementById("orders-tab");
-  const productsTab = document.getElementById("products-tab");
-  const customersTab = document.getElementById("customers-tab");
+const dashboardTab = document.querySelector('.sidebar-menu a.active');
+const ordersTab = document.getElementById("orders-tab");
+const productsTab = document.getElementById("products-tab");
+const customersTab = document.getElementById("customers-tab");
 
   // Sections
   const ordersSection = document.getElementById("orders-section");
