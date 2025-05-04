@@ -80,11 +80,23 @@
             <!-- Orders Section -->
             <section id="orders-section">
                 <h3>Order Tracking</h3>
-                <!-- Tracking number will be displayed here -->
                 <div id="tracking-info">
                     <h4>Your Tracking Number: <span id="tracking-number"></span></h4>
                 </div>
-                <div id="orders-list"></div>
+                <!-- ✅ Order Tracking Table -->
+                <table border="1" cellpadding="5" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orderTableBody">
+                        <!-- JS will populate this -->
+                    </tbody>
+                </table>
             </section>
 
             <!-- Products Section -->
@@ -120,7 +132,7 @@
         </div>
     </div>
 
-    <!-- Add script -->
-    <script src="script.js"></script>
+    <!-- ✅ Link to admin-tracking.js -->
+    <script src="admin-tracking.js"></script>
 </body>
 </html>
