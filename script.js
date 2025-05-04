@@ -45,27 +45,43 @@ const customersTab = document.getElementById("customers-tab");
       displayComments();
     });
   }
+// Extract tracking number from URL
+const urlParams = new URLSearchParams(window.location.search);
+const trackingNoFromURL = urlParams.get('trackingNo');
 
-  // Display Orders
-  function displayOrders() {
-    const container = document.getElementById("orders-list");
-    container.innerHTML = "";
-    if (orders.length === 0) {
-      container.textContent = "No orders yet.";
-      return;
-    }
-    orders.forEach(order => {
-      const div = document.createElement("div");
-      div.className = "order-entry";
-      div.innerHTML = `
-        <p><strong>Name:</strong> ${order.name}</p>
-        <p><strong>Tracking No:</strong> ${order.trackingNo}</p>
-        <p><strong>Total:</strong> ₱${order.total}</p>
-        <hr>
-      `;
-      container.appendChild(div);
-    });
+  // order
+function displayOrders() {
+  const container = document.getElementById("orders-list");
+  container.innerHTML = "";
+
+  if (orders.length === 0) {
+    container.textContent = "No orders yet.";
+    return;
   }
+
+  const matchingOrders = trackingNoFromURL
+    ? orders.filter(order => order.trackingNo === trackingNoFromURL)
+    : orders;
+
+  if (matchingOrders.length === 0) {
+    container.textContent = "No matching order found.";
+    return;
+  }
+
+  matchingOrders.forEach(order => {
+    const div = document.createElement("div");
+    div.className = "order-entry";
+    div.innerHTML = `
+      <p><strong>Name:</strong> ${order.name}</p>
+      <p><strong>Tracking No:</strong> ${order.trackingNo}</p>
+      <p><strong>Total:</strong> ₱${order.total}</p>
+      <p><strong>Status:</strong> ${order.status}</p>
+      <p><strong>Time:</strong> ${new Date(order.timestamp).toLocaleString()}</p>
+      <hr>
+    `;
+    container.appendChild(div);
+  });
+}
 
   // Display Products
   function displayProducts() {
